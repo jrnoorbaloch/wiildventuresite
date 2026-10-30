@@ -62,7 +62,7 @@ export default function App() {
   return (
     <AuthProvider>
       <CMSProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/wiildventuresite">
           <ScrollToTop />
           <Routes>
             {/* Public Website & All Dedicated Nav Pages */}
