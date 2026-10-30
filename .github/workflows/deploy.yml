@@ -1,5 +1,5 @@
 
-name: Deploy Website to GitHub Pages
+name: Deploy Vite site to GitHub Pages
 
 on:
   push:
@@ -28,14 +28,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build website
+      - name: Build project
         run: npm run build
 
-      - name: Upload production build
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload build files
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -49,6 +53,6 @@ jobs:
     needs: build
 
     steps:
-      - name: Deploy website
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
